@@ -12,75 +12,40 @@ function sum(...args) {
     return s / args.length;
 }
 
-// function bai7(fullName, ...points) {
-//     // if (points.length !== 3) return console.log('loi')
+function message({ rank, fullName, medium }) {
+    return `Diem cua ${fullName} la ${medium.toFixed(2)} (rank: ${rank})`;
+}
 
-//     const nums = points.map(item => +item);
-
-//     nums.forEach(item => {
-//         if (item < 0 || item > 10) {
-//             throw new Error('Score invalid.');
-//         }
-//     });
-
-//     const medium = sum(...nums);
-
-//     if (medium >= 9) {
-//         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: suat xac)`);
-//         return;
-//     }
-
-//     if (medium >= 8) {
-//         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: gioi)`);
-//         return;
-//     }
-
-//     if (medium >= 6.5) {
-//         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: kha)`);
-//         return;
-//     }
-
-//     if (medium >= 5) {
-//         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: trung binh)`);
-//         return;
-//     }
-
-//     if (medium >= 3) {
-//         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: yeu)`);
-//         return;
-//     }
-
-//     console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: kem)`);
-// }
-
-const pointAndRank = [
+const configs = [
     {
-        medium: 9,
-        rank: 'SX',
+        mileStone: 9,
+        rank: 'XS',
     },
     {
-        medium: 8,
+        mileStone: 8,
         rank: 'G',
     },
     {
-        medium: 6.5,
-        rank: 'kha',
+        mileStone: 6.5,
+        rank: 'Kha',
     },
     {
-        medium: 5,
+        mileStone: 5,
         rank: 'TB',
     },
     {
-        medium: 3.5,
+        mileStone: 3.5,
         rank: 'Y',
     },
     {
-        medium: 0,
+        mileStone: 0,
         rank: 'Kem',
     },
 ];
 
 function bai7(fullName, ...points) {
+    // if (points.length !== 3) return console.log('loi')
+
     const nums = points.map(item => +item);
 
     nums.forEach(item => {
@@ -89,16 +54,11 @@ function bai7(fullName, ...points) {
         }
     });
 
-    const medium = sum(...nums);
+    const medium = sum(...numbers);
 
-    const result = pointAndRank.find(item => medium >= item.medium);
-    console.log(`Diem cua ${fullName} la ${medium.toFixed(2)} (xep loai: ${result.rank})`);
+    const data = configs.find((item, index) => medium > item.mileStone);
+
+    console.log(message({ rank: data.rank, fullName, medium }));
 }
-
-// const arr = [{ name: 'huy' }, { name: 'trung' }];
-// const findHuy = arr.find(item => item.name === 'huy');
-// findHuy.name = 'haha';
-// console.log(arr, arr[0], findHuy);
-// console.log({} === {});
 
 bai7(...commandLineArgs);

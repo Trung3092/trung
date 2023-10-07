@@ -23,7 +23,7 @@ function bai6(km) {
     }
     num -= cotMoc1;
 
-    if (num < 6) {
+    if (num <= 6) {
         money = 1 * sotien1kmdau + 4 * sotientu2den5km + (num - 5) * sotientu2den5km;
         console.log(money);
         return;

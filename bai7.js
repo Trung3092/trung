@@ -1,22 +1,29 @@
 const commandLineArgs = process.argv.slice(2);
 
-function medium(...args) {
-    console.log('medium running ...');
+function sum(...args) {
+    // console.log('medium running ...');
 
     // @TODO: tinh tong 1 mang
+
+    let s = 0;
+    for (const item of args) {
+        s += item;
+    }
+    return s / args.length;
 }
 
-function bai7(fullName, pointT, pointL, pointH) {
-    const numA = +pointT;
-    const numB = +pointL;
-    const numC = +pointH;
+function bai7(fullName, ...points) {
+    // if (points.length !== 3) return console.log('loi')
 
-    const medium = medium();
+    const nums = points.map(item => +item);
 
-    if (medium > 10 || medium < 0) {
-        console.log('Score invalid.');
-        return;
-    }
+    nums.forEach(item => {
+        if (item < 0 || item > 10) {
+            throw new Error('Score invalid.');
+        }
+    });
+
+    const medium = sum(...nums);
 
     if (medium >= 9) {
         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: suat xac)`);
@@ -35,10 +42,12 @@ function bai7(fullName, pointT, pointL, pointH) {
 
     if (medium >= 5) {
         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: trung binh)`);
+        return;
     }
 
     if (medium >= 3) {
         console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: yeu)`);
+        return;
     }
 
     console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: kem)`);

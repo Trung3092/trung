@@ -12,44 +12,52 @@ function sum(...args) {
     return s / args.length;
 }
 
+function message({ rank, fullName, medium }) {
+    return `Diem cua ${fullName} la ${medium.toFixed(2)} (rank: ${rank})`;
+}
+
+const configs = [
+    {
+        mileStone: 9,
+        rank: 'XS',
+    },
+    {
+        mileStone: 8,
+        rank: 'G',
+    },
+    {
+        mileStone: 6.5,
+        rank: 'Kha',
+    },
+    {
+        mileStone: 5,
+        rank: 'TB',
+    },
+    {
+        mileStone: 3.5,
+        rank: 'Y',
+    },
+    {
+        mileStone: 0,
+        rank: 'Kem',
+    },
+];
+
 function bai7(fullName, ...points) {
     // if (points.length !== 3) return console.log('loi')
+    const numbers = points.map(item => +item);
 
-    const nums = points.map(item => +item);
-
-    nums.forEach(item => {
+    numbers.forEach(item => {
         if (item < 0 || item > 10) {
             throw new Error('Score invalid.');
         }
     });
 
-    const medium = sum(...nums);
+    const medium = sum(...numbers);
 
-    if (medium >= 9) {
-        console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: suat xac)`);
-        return;
-    }
+    const data = configs.find((item, index) => medium > item.mileStone);
 
-    if (medium >= 8) {
-        console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: gioi)`);
-        return;
-    }
-
-    if (medium >= 6.5) {
-        console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: kha)`);
-        return;
-    }
-
-    if (medium >= 5) {
-        console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: trung binh)`);
-        return;
-    }
-
-    if (medium >= 3) {
-        console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: yeu)`);
-        return;
-    }
-
-    console.log(`diem trung binh cua ${fullName} la ${medium.toFixed(2)} (xep loai: kem)`);
+    console.log(message({ rank: data.rank, fullName, medium }));
 }
+
 bai7(...commandLineArgs);

@@ -8,12 +8,7 @@ const primeNumber = function (n) {
         return;
     }
 
-    if (num === 2) {
-        console.log(`${num} là số nguyên tố`);
-        return;
-    }
-
-    for (let i = 2; i < num; i++) {
+    for (let i = 2; i < num - 1; i++) {
         if (num % i === 0) {
             console.log(`${num} không phải là số nguyên tố`);
             break;
